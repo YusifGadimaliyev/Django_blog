@@ -23,6 +23,9 @@ var/
 *.egg
 .venv
 .vscode
-__pycache__/
 *.py[cod]
+*~
+__pycache__
+/static
+.DS_Store
 
