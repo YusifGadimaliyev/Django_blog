@@ -1,0 +1,33 @@
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% include 'header.html' %}
+
+
+
+
+<div class="container" style="margin-bottom: 100%;">
+
+    <div class="row">
+
+      <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+            <h1 class="my-4">Profil Sehifesi</h1>
+            <!-- <h3>Umumi melumat</h3> -->
+                <h4 class="card-title text-center">Şəxsi məlumatlarınız</h4>
+                <!-- <form class="form-signin" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %} -->
+                        ---]&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ context.username.upper }}</span>&nbsp;&nbsp;&nbsp;&nbsp;[---<br><br>
+                        ---]&nbsp;&nbsp;&nbsp;&nbsp;<span>{{ context.email }}</span>&nbsp;&nbsp;&nbsp;&nbsp;[---
+                    
+                    
+                    <!-- <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Save</button> -->
+                    <hr class="my-4">
+                </form>
+        </div>
+    </div>
+</div>
+
+
+{% include 'footer.html' %}

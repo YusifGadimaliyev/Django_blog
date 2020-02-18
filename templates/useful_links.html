@@ -1,0 +1,18 @@
+<div class="card my-4">
+        <h5 class="card-header" style="color: #262626;">Faydali Linkler</h5>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-10">
+                    <ul class="list-unstyled mb-0">
+                        {% for link in links %}
+
+                            <li>
+                                <a class="nav-link" href="https://www.{{ link.link_name }}" target="_blank">>>&nbsp;{{ link.link_name }}</a>
+                            </li>
+
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Blog Entries Column -->
+      <div class="col-md-8">
+
+        <h1 class="my-4">Başlıqlar</h1>
+        <h3>Son Paylaşımlar</h3>
+
+        <!-- Blog Post -->
+        {% for post in post_list %}
+        <div class="card mb-3"><a href="{{ post.get_absolute_url }}">
+          <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap"></a>
+          <div class="card-body">
+            <h2 class="card-title">{{ post.title }}</h2>
+            <p class="card-text">{{ post.content|truncatewords:19 }}</p>
+            <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Daha çox &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">{{ post.pub_date | date }}
+          </div>
+        </div>
+        {% endfor %}
+
+        <!-- Pagination -->
+
+        <nav aria-label="...">
+          {% if post_list.has_other_pages %}
+          <ul class="pagination">
+          {% if post_list.has_previous %}
+            <li class="page-item enabled">
+              <a class="page-link" href="?page={{ post_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" tabindex="-1">Geri</a>
+            </li>
+          {% endif %}
+          {% for i in post_list.paginator.page_range %}
+            {% if post_list.number == i %}
+              <li class="page-item active">
+                <a class="page-link" href="#">{{ i }}<span class="sr-only">(current)</span></a>
+              </li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href="?page={{ i }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if post_list.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ post_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">İrəli</a>
+            </li>
+          {% endif %}
+          {% endif %}
+
+          </ul>
+        </nav><br><br><br>
+
+      </div>
+
+{% endblock content %}

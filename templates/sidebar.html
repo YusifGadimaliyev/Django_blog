@@ -1,0 +1,54 @@
+{% load static %}
+
+    <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Search Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Axtar</h5>
+                <div class="card-body">
+                    <form role="search" method="GET" action="">
+                        <div class="input-group w3-padding w3-large w3-text-orange">
+                            <input type="text" class="form-control" name="q" placeholder="Axtar..." value="{{ request.GET.q }}">
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="submit"><i class="w3-spin fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Categories Widget -->
+            <div class="card my-4">
+                <h5 class="card-header" style="color: #262626;">Çox oxunanlar</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <ul class="list-unstyled mb-0">
+                                {% for poster in most_read %}
+
+                                    <li>
+                                        <a class="nav-link" href="{{ poster.get_absolute_url }}">>>&nbsp;{{ poster.title }} [{{ poster.show }}]</a>
+                                    </li>
+
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Side Widget -->
+            <!-- <div class="card my-4">
+            <h5 class="card-header">Side Widget</h5>
+                <div class="card-body">
+                </div>
+            </div> -->
+
+            {% include 'useful_links.html' %}
+
+        </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->

@@ -1,0 +1,111 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% include 'header.html' %}
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+
+        <!-- Title -->
+        <h1 class="mt-4">{{ post.title }}</h1>
+
+        <!-- Author -->
+        <!-- <p class="lead">
+          by
+          <a href="#">Start Bootstrap</a>
+        </p>
+
+        <hr> -->
+
+        <!-- Date/Time -->
+        <p>{{ post.pub_date | date:"j F, H:i" }}</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" src="{{ post.image.url }}" alt="">
+
+        <hr>
+
+        <!-- Post Content -->
+
+        <blockquote class="blockquote">
+          <p class="lead">{{ post.content }}</p>
+          <footer class="blockquote-footer">Someone famous in
+            <cite title="Source Title">Source Title</cite>
+          </footer>
+        </blockquote>
+
+        <hr>
+        {% if user.is_authenticated %}
+        <!-- Comments Form -->
+        <div class="card my-4">
+          <h5 class="card-header">Rey gonder:</h5>
+          <div class="card-body">
+            <form method="POST">
+              {% csrf_token %}
+              {{ form | crispy }}
+              <button type="submit" class="btn btn-primary">Yaz</button>
+            </form>
+          </div>
+        </div>
+        {% else %}
+        <p>Rey bildirmek ucun blog'umuza <a href="{% url 'accounts:login' %}">giris</a> edin ve ya <a href="{% url 'accounts:register' %}"> qeydiyyatdan</a> kecin</p>
+        {% endif %}
+
+        {% for comment in post.comments.all %}
+        <!-- Single Comment -->
+        <div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h4 class="mt-0">{{ comment.author }} | <small>{{ comment.created_date | timesince }} ago</small></h4>
+            <p>{{ comment.content|linebreaks }}</p>
+          </div>
+        </div>
+
+        {% endfor %}
+
+        <!-- Comment with nested comments -->
+        <!-- <div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">Commenter Name</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+          </div>
+        </div> -->
+
+      </div>
+
+      <div class="col-md-4">
+        {% include 'useful_links.html' %}
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+{% include 'footer.html' %}
