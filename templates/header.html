@@ -22,7 +22,12 @@
 
   <!-- Custom styles for this template -->
     <link href="{% static 'css/blog-home.css' %}" rel="stylesheet">
-		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+      #hint_id_new_password1{
+                display : none;
+        }
+ </style>
 
 </head>
 
@@ -51,7 +56,7 @@
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:profile' %}" style="color:azure;"><i class="fa fa-user">&nbsp;</i>{{ user.username.title }}</a>
+            <a class="nav-link" href="{% url 'accounts:user_edit_profile' %}" style="color:azure;"><i class="fa fa-user">&nbsp;</i>{{ user.username.title }}</a>
           </li>
           <li>
             <a class="nav-link" href="{% url 'accounts:logout' %}"><i class="fa fa-sign-out">&nbsp;</i>Çıxış</a>

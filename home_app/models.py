@@ -8,7 +8,7 @@ class Post(models.Model):
     title = models.CharField(max_length=33, verbose_name='Başlıq')
     content = models.TextField(verbose_name='Metn')
     pub_date = models.DateTimeField(auto_now_add=True, verbose_name='Tarix')
-    image = models.ImageField(upload_to='images/', verbose_name='Foto')
+    image = models.ImageField(upload_to='images/', verbose_name='Şəkil')
     show = models.IntegerField(default=0, blank=True, null=True)
 
 
@@ -20,7 +20,8 @@ class Post(models.Model):
 
 
 class useful(models.Model):
-    link_name = models.CharField(max_length=255)
+    link_name = models.CharField(max_length=200)
+    link_url = models.CharField(max_length=255)
     pub_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -9,20 +9,24 @@
 
       <!-- Blog Entries Column -->
       <div class="col-md-8">
+        <br>
 
-        <h1 class="my-4">Başlıqlar</h1>
+        <!-- <h1 class="my-4">Başlıqlar</h1> -->
         <h3>Son Paylaşımlar</h3>
 
         <!-- Blog Post -->
         {% for post in post_list %}
-        <div class="card mb-3"><a href="{{ post.get_absolute_url }}">
-          <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap"></a>
+        <div class="card mb-3">
+          <div class="card-header text-muted">
+            {{ post.pub_date | date }}
+          </div>
+          <a href="{{ post.get_absolute_url }}">
+            <img class="card-img-top" src="{{ post.image.url }}" style="width: 100%; height: 300px;" alt="Card image cap">
+          </a>
           <div class="card-body">
             <h2 class="card-title">{{ post.title }}</h2>
             <p class="card-text">{{ post.content|truncatewords:19 }}</p>
             <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Daha çox &rarr;</a>
-          </div>
-          <div class="card-footer text-muted">{{ post.pub_date | date }}
           </div>
         </div>
         {% endfor %}
